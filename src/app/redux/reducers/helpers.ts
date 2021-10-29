@@ -7,7 +7,7 @@ export type ActionPayload<T extends string, P extends any> = Action<T> & {
 export type CreateAction<
   T extends Record<string, any>,
   K extends keyof T
-> = Action<K> & T[K];
+> = T[K] extends void ? Action<K> : Action<K> & T[K];
 
 export type Handler<
   TState,
