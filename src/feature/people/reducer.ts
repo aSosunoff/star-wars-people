@@ -5,11 +5,12 @@ import {
   CreateAction,
   Handler,
 } from "../../app/redux/reducers/helpers";
-import { Person } from "./interfaces";
+import { Person } from "../../app/interfaces.ts/person";
+import { PagesType } from "../../app/interfaces.ts/pages-type";
 
 type ActionPeople = {
-  REQUEST: null;
-  SUCCESS: { payload: Person[] };
+  REQUEST: void;
+  SUCCESS: { payload: PagesType<Person> };
   FAILURE: { payload: any };
 };
 
@@ -18,13 +19,13 @@ export type ActionPeopleSuccess = CreateAction<ActionPeople, "SUCCESS">;
 export type ActionPeaoleFailure = CreateAction<ActionPeople, "FAILURE">;
 
 type State = {
-  people: Person[];
+  pageData: PagesType<Person> | null;
   loading: boolean;
   error: any;
 };
 
 const initialState: State = {
-  people: [],
+  pageData: null,
   loading: false,
   error: null,
 };
