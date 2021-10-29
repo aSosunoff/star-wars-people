@@ -1,8 +1,16 @@
 import { PagesType } from "./../interfaces.ts/pages-type";
 import { Person } from "../interfaces.ts/person";
 
-const request = async <Result>(type: string, init?: RequestInit) => {
-  const request = await fetch(`https://swapi.dev/api/${type}/`, init);
+const request = async <Result>(
+  type: string,
+  page: number,
+  search: string = "",
+  init?: RequestInit
+) => {
+  const request = await fetch(
+    `https://swapi.dev/api/${type}/?page=${page}&search=${search}`,
+    init
+  );
 
   if (!request.ok) {
     const body = await request.json();
@@ -15,8 +23,12 @@ const request = async <Result>(type: string, init?: RequestInit) => {
 };
 
 export class SWAPIService {
-  static getPeople = async (init?: RequestInit) => {
-    const data = await request<PagesType<Person>>("people", init);
+  static getPeople = async (
+    page: number,
+    search: string = "",
+    init?: RequestInit
+  ) => {
+    const data = await request<PagesType<Person>>("people", page, search, init);
 
     return data;
   };
