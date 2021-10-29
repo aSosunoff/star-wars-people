@@ -11,10 +11,13 @@ import {
 export function* loadPeopleList() {
   yield put<ActionPeopleRequest>({
     type: "REQUEST",
+    payload: {
+      page: 1,
+    },
   });
 
   try {
-    const pageData: PagesType<Person> = yield call(SWAPIService.getPeople);
+    const pageData: PagesType<Person> = yield call(SWAPIService.getPeople, 1);
 
     yield put<ActionPeopleSuccess>({
       type: "SUCCESS",
