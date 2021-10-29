@@ -9,7 +9,12 @@ import { Person } from "../../app/interfaces.ts/person";
 import { PagesType } from "../../app/interfaces.ts/pages-type";
 
 type ActionPeople = {
-  REQUEST: void;
+  REQUEST: {
+    payload: {
+      page: number;
+      search?: string;
+    };
+  };
   SUCCESS: { payload: PagesType<Person> };
   FAILURE: { payload: any };
 };
@@ -20,19 +25,25 @@ export type ActionPeaoleFailure = CreateAction<ActionPeople, "FAILURE">;
 
 type State = {
   pageData: PagesType<Person> | null;
+  page: number;
+  search: string;
   loading: boolean;
   error: any;
 };
 
 const initialState: State = {
   pageData: null,
+  page: 1,
+  search: "",
   loading: false,
   error: null,
 };
 
 const handlers: Handler<State, ActionPeople> = {
-  REQUEST: (state) => ({
+  REQUEST: (state, action) => ({
     ...state,
+    search: "",
+    ...action.payload,
     loading: true,
     error: null,
   }),
