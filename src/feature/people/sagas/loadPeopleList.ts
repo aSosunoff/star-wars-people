@@ -13,6 +13,7 @@ export function* loadPeopleList() {
     type: "REQUEST",
     payload: {
       page: 1,
+      search: "",
     },
   });
 
