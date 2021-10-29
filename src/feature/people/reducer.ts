@@ -12,7 +12,7 @@ type ActionPeople = {
   REQUEST: {
     payload: {
       page: number;
-      search?: string;
+      search: string;
     };
   };
   SUCCESS: { payload: PagesType<Person> };
@@ -42,7 +42,6 @@ const initialState: State = {
 const handlers: Handler<State, ActionPeople> = {
   REQUEST: (state, action) => ({
     ...state,
-    search: "",
     ...action.payload,
     loading: true,
     error: null,
