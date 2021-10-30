@@ -6,27 +6,27 @@ import {
   ActionPeaoleFailure,
   ActionPeopleRequest,
   ActionPeopleSuccess,
-} from "../../../feature/people/reducer";
+  typePeopleFalure,
+  typePeopleSuccess,
+} from "../action";
 
-export function* loadPeopleList() {
-  yield put<ActionPeopleRequest>({
-    type: "REQUEST",
-    payload: {
-      page: 1,
-      search: "",
-    },
-  });
-
+export function* loadPeopleList({
+  payload: { search, page },
+}: ActionPeopleRequest) {
   try {
-    const pageData: PagesType<Person> = yield call(SWAPIService.getPeople, 1);
+    const pageData: PagesType<Person> = yield call(
+      SWAPIService.getPeople,
+      page,
+      search
+    );
 
     yield put<ActionPeopleSuccess>({
-      type: "SUCCESS",
+      type: typePeopleSuccess,
       payload: pageData,
     });
   } catch (error: any) {
     yield put<ActionPeaoleFailure>({
-      type: "FAILURE",
+      type: typePeopleFalure,
       payload: error,
     });
   }
