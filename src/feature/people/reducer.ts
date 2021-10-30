@@ -8,6 +8,9 @@ import {
   ActionPeople,
   ActionPeopleRequest,
   ActionPeopleSuccess,
+  typePeopleFalure,
+  typePeopleRequest,
+  typePeopleSuccess,
 } from "./action";
 
 type State = {
@@ -27,18 +30,18 @@ const initialState: State = {
 };
 
 const handlers: Handler<State, ActionPeople> = {
-  REQUEST: (state, action) => ({
+  [typePeopleRequest]: (state, action) => ({
     ...state,
     ...action.payload,
     loading: true,
     error: null,
   }),
-  FAILURE: (state, action) => ({
+  [typePeopleFalure]: (state, action) => ({
     ...state,
     loading: false,
     error: action.payload,
   }),
-  SUCCESS: (state, action) => ({
+  [typePeopleSuccess]: (state, action) => ({
     ...state,
     loading: false,
     people: action.payload,
