@@ -1,3 +1,4 @@
+import { selectorPeople } from "./../selectors/selector-people";
 import { take, select, put } from "redux-saga/effects";
 import { LOCATION_CHANGE, LocationChangeAction } from "connected-react-router";
 import { Path } from "../../../app/router/path-constant";
@@ -13,9 +14,9 @@ export function* watchRoutePeople() {
         action.payload.location.pathname as Path
       )
     ) {
-      const { page, search }: StateRoot["people"] = yield select<
-        (store: StateRoot) => any
-      >(({ people }) => people);
+      const { page, search }: StateRoot["people"] = yield select(
+        selectorPeople
+      );
 
       yield put<ActionPeopleRequest>({
         type: typePeopleRequest,
