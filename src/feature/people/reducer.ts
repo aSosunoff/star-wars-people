@@ -13,7 +13,7 @@ import {
   typePeopleSuccess,
 } from "./action";
 
-type State = {
+type StatePeople = {
   pageData: PagesType<Person> | null;
   page: number;
   search: string;
@@ -21,7 +21,7 @@ type State = {
   error: any;
 };
 
-const initialState: State = {
+const initialState: StatePeople = {
   pageData: null,
   page: 1,
   search: "",
@@ -29,7 +29,7 @@ const initialState: State = {
   error: null,
 };
 
-const handlers: Handler<State, ActionPeople> = {
+const handlers: Handler<StatePeople, ActionPeople> = {
   [typePeopleRequest]: (state, action) => ({
     ...state,
     ...action.payload,
@@ -44,12 +44,12 @@ const handlers: Handler<State, ActionPeople> = {
   [typePeopleSuccess]: (state, action) => ({
     ...state,
     loading: false,
-    people: action.payload,
+    pageData: action.payload,
   }),
   DEFAULT: (state) => state,
 };
 
 export const peopleReducer: Reducer<
-  State,
+  StatePeople,
   ActionPeopleRequest | ActionPeopleSuccess | ActionPeaoleFailure
 > = (state = initialState, action) => CreateReducer(handlers, state, action);
