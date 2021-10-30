@@ -9,8 +9,6 @@ import {
 import styles from "./app.module.less";
 import { Router } from "./router";
 
-console.log(styles);
-
 export const App: React.FC = () => {
   return (
     <Layout style={{ minHeight: "100vh", maxHeight: "100vh" }}>
