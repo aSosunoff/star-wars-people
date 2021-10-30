@@ -6,8 +6,8 @@ import {
   ActionPeaoleFailure,
   ActionPeopleRequest,
   ActionPeopleSuccess,
-  typePeopleFalure,
-  typePeopleSuccess,
+  PEOPLE_FAILURE,
+  PEOPLE_SUCCESS,
 } from "../action";
 
 export function* loadPeopleList({
@@ -21,12 +21,12 @@ export function* loadPeopleList({
     );
 
     yield put<ActionPeopleSuccess>({
-      type: typePeopleSuccess,
+      type: PEOPLE_SUCCESS,
       payload: pageData,
     });
   } catch (error: any) {
     yield put<ActionPeaoleFailure>({
-      type: typePeopleFalure,
+      type: PEOPLE_FAILURE,
       payload: error,
     });
   }

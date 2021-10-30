@@ -20,15 +20,15 @@ export type ActionPeopleRequest = CreateAction<
   dispatchPeopleRequest
 >;
 
-export const typePeopleSuccess = "PEOPLE_SUCCESS";
-export type dispatchPeopleSuccess = typeof typePeopleSuccess;
+export const PEOPLE_SUCCESS = "PEOPLE_SUCCESS";
+export type dispatchPeopleSuccess = typeof PEOPLE_SUCCESS;
 export type ActionPeopleSuccess = CreateAction<
   ActionPeople,
   dispatchPeopleSuccess
 >;
 
-export const typePeopleFalure = "PEOPLE_FAILURE";
-export type dispatchPeopleFalure = typeof typePeopleFalure;
+export const PEOPLE_FAILURE = "PEOPLE_FAILURE";
+export type dispatchPeopleFalure = typeof PEOPLE_FAILURE;
 export type ActionPeaoleFailure = CreateAction<
   ActionPeople,
   dispatchPeopleFalure
