@@ -1,7 +1,8 @@
-import { take, fork } from "redux-saga/effects";
+import { take, select, put } from "redux-saga/effects";
 import { LOCATION_CHANGE, LocationChangeAction } from "connected-react-router";
 import { Path } from "../../../app/router/path-constant";
-import { loadPeopleList } from "./loadPeopleList";
+import { StateRoot } from "../../../app/redux/reducers";
+import { ActionPeopleRequest, typePeopleRequest } from "../action";
 
 export function* watchRoutePeople() {
   while (true) {
@@ -12,7 +13,14 @@ export function* watchRoutePeople() {
         action.payload.location.pathname as Path
       )
     ) {
-      yield fork(loadPeopleList);
+      const { page, search }: StateRoot["people"] = yield select<
+        (store: StateRoot) => any
+      >(({ people }) => people);
+
+      yield put<ActionPeopleRequest>({
+        type: typePeopleRequest,
+        payload: { page, search },
+      });
     }
   }
 }
