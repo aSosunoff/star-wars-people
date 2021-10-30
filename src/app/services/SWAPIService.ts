@@ -7,8 +7,14 @@ const request = async <Result>(
   search: string = "",
   init?: RequestInit
 ) => {
+  let searchQuery = "";
+
+  if (search !== "") {
+    searchQuery += `&search=${search}`;
+  }
+
   const request = await fetch(
-    `https://swapi.dev/api/${type}/?page=${page}&search=${search}`,
+    `https://swapi.dev/api/${type}/?page=${page}${searchQuery}`,
     init
   );
 
