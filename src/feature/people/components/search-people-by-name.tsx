@@ -1,6 +1,6 @@
 import { Input } from "antd";
 import { useSelector } from "react-redux";
-import { useForm, InitialForm } from "@asosunoff/react_use_form";
+import { useForm } from "@asosunoff/react_use_form";
 import { useDispatchPeopleRequest } from "../dispatch/use-dispatch-people-request";
 import { selectorPeople } from "../selectors/selector-people";
 import { useEffect } from "react";
