@@ -1,6 +1,6 @@
 import { Dispatch, useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { ActionPeopleRequest, typePeopleRequest } from "../action";
+import { ActionPeopleRequest, PEOPLE_REQUEST } from "../action";
 
 export const useDispatchPeopleRequest = () => {
   const dispatch = useDispatch<Dispatch<ActionPeopleRequest>>();
@@ -8,7 +8,7 @@ export const useDispatchPeopleRequest = () => {
   const dispatchPepleRequest = useCallback(
     (page: number, search: string) => {
       dispatch({
-        type: typePeopleRequest,
+        type: PEOPLE_REQUEST,
         payload: {
           page,
           search,

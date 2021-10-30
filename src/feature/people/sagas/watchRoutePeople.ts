@@ -3,7 +3,7 @@ import { take, select, put } from "redux-saga/effects";
 import { LOCATION_CHANGE, LocationChangeAction } from "connected-react-router";
 import { Path } from "../../../app/router/path-constant";
 import { StateRoot } from "../../../app/redux/reducers";
-import { ActionPeopleRequest, typePeopleRequest } from "../action";
+import { ActionPeopleRequest, PEOPLE_REQUEST } from "../action";
 
 export function* watchRoutePeople() {
   while (true) {
@@ -19,7 +19,7 @@ export function* watchRoutePeople() {
       );
 
       yield put<ActionPeopleRequest>({
-        type: typePeopleRequest,
+        type: PEOPLE_REQUEST,
         payload: { page, search },
       });
     }

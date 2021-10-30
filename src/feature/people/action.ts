@@ -13,8 +13,8 @@ export type ActionPeople = {
   PEOPLE_FAILURE: { payload: any };
 };
 
-export const typePeopleRequest = "PEOPLE_REQUEST";
-export type dispatchPeopleRequest = typeof typePeopleRequest;
+export const PEOPLE_REQUEST = "PEOPLE_REQUEST";
+export type dispatchPeopleRequest = typeof PEOPLE_REQUEST;
 export type ActionPeopleRequest = CreateAction<
   ActionPeople,
   dispatchPeopleRequest
