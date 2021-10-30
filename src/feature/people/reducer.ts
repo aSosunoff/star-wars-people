@@ -1,27 +1,14 @@
 import { Reducer } from "redux";
 
-import {
-  CreateReducer,
-  CreateAction,
-  Handler,
-} from "../../app/redux/reducers/helpers";
+import { CreateReducer, Handler } from "../../app/redux/reducers/helpers";
 import { Person } from "../../app/interfaces.ts/person";
 import { PagesType } from "../../app/interfaces.ts/pages-type";
-
-type ActionPeople = {
-  REQUEST: {
-    payload: {
-      page: number;
-      search: string;
-    };
-  };
-  SUCCESS: { payload: PagesType<Person> };
-  FAILURE: { payload: any };
-};
-
-export type ActionPeopleRequest = CreateAction<ActionPeople, "REQUEST">;
-export type ActionPeopleSuccess = CreateAction<ActionPeople, "SUCCESS">;
-export type ActionPeaoleFailure = CreateAction<ActionPeople, "FAILURE">;
+import {
+  ActionPeaoleFailure,
+  ActionPeople,
+  ActionPeopleRequest,
+  ActionPeopleSuccess,
+} from "./action";
 
 type State = {
   pageData: PagesType<Person> | null;
