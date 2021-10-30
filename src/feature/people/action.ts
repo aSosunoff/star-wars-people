@@ -3,31 +3,31 @@ import { Person } from "../../app/interfaces.ts/person";
 import { CreateAction } from "../../app/redux/reducers/helpers";
 
 export type ActionPeople = {
-  REQUEST: {
+  PEOPLE_REQUEST: {
     payload: {
       page: number;
       search: string;
     };
   };
-  SUCCESS: { payload: PagesType<Person> };
-  FAILURE: { payload: any };
+  PEOPLE_SUCCESS: { payload: PagesType<Person> };
+  PEOPLE_FAILURE: { payload: any };
 };
 
-export const typePeopleRequest = "REQUEST";
+export const typePeopleRequest = "PEOPLE_REQUEST";
 export type dispatchPeopleRequest = typeof typePeopleRequest;
 export type ActionPeopleRequest = CreateAction<
   ActionPeople,
   dispatchPeopleRequest
 >;
 
-export const typePeopleSuccess = "SUCCESS";
+export const typePeopleSuccess = "PEOPLE_SUCCESS";
 export type dispatchPeopleSuccess = typeof typePeopleSuccess;
 export type ActionPeopleSuccess = CreateAction<
   ActionPeople,
   dispatchPeopleSuccess
 >;
 
-export const typePeopleFalure = "FAILURE";
+export const typePeopleFalure = "PEOPLE_FAILURE";
 export type dispatchPeopleFalure = typeof typePeopleFalure;
 export type ActionPeaoleFailure = CreateAction<
   ActionPeople,
