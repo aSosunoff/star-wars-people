@@ -1,8 +1,8 @@
 import { spawn, call, all } from "redux-saga/effects";
-import { watchRoutePeople } from "../../../feature/people/sagas/watchRoutePeople";
+import { peopleSaga } from "../../../feature/people/sagas";
 
 export function* rootSaga() {
-  const sagas = [watchRoutePeople];
+  const sagas = [peopleSaga];
 
   const retrySagas = sagas.map((saga) =>
     spawn(function* () {
