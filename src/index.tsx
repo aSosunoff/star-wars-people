@@ -5,13 +5,13 @@ import { ConnectedRouter } from "connected-react-router";
 import { createBrowserHistory } from "history";
 
 import { configureStore } from "./app/redux";
-import { Router } from "./app/router";
-
+import { App } from "./app";
 import { ConfigProvider } from "antd";
+import "./index.less";
+
 import ru_RU from "antd/lib/locale/ru_RU";
 import moment from "moment";
 import "moment/locale/ru";
-import "./index.less";
 
 moment.locale("ru");
 
@@ -21,11 +21,11 @@ const store = configureStore(history);
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <ConfigProvider locale={ru_RU}>
-        <Router />
-      </ConfigProvider>
-    </ConnectedRouter>
+    <ConfigProvider locale={ru_RU}>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
+    </ConfigProvider>
   </Provider>,
   document.getElementById("root")
 );
