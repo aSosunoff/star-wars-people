@@ -1,5 +1,5 @@
-import { PagesType } from "../../app/interfaces.ts/pages-type";
-import { Planet } from "../../app/interfaces.ts/planet";
+import { PagesType } from "../../app/interfaces/pages-type";
+import { Planet } from "../../app/interfaces/planet";
 import { CreateAction } from "../../app/redux/reducers/helpers";
 
 export type ActionPlanets = {

@@ -1,5 +1,5 @@
 import { call, put } from "redux-saga/effects";
-import { PagesType } from "../../../app/interfaces.ts/pages-type";
+import { PagesType } from "../../../app/interfaces/pages-type";
 import { SWAPIService } from "../../../app/services/SWAPIService";
 import {
   ActionPlanetsFailure,
@@ -8,7 +8,7 @@ import {
   PLANETS_FAILURE,
   PLANETS_SUCCESS,
 } from "../action";
-import { Planet } from "../../../app/interfaces.ts/planet";
+import { Planet } from "../../../app/interfaces/planet";
 
 export function* loadPlanetsList({
   payload: { search, page },

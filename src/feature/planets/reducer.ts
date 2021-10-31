@@ -1,7 +1,7 @@
 import { Reducer } from "redux";
 
 import { CreateReducer, Handler } from "../../app/redux/reducers/helpers";
-import { PagesType } from "../../app/interfaces.ts/pages-type";
+import { PagesType } from "../../app/interfaces/pages-type";
 import {
   ActionPlanetsFailure,
   ActionPlanets,
@@ -11,7 +11,7 @@ import {
   PLANETS_FAILURE,
   PLANETS_SUCCESS,
 } from "./action";
-import { Planet } from "../../app/interfaces.ts/planet";
+import { Planet } from "../../app/interfaces/planet";
 
 type StatePlanets = {
   pageData: PagesType<Planet> | null;

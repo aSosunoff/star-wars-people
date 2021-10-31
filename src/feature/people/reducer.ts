@@ -1,8 +1,8 @@
 import { Reducer } from "redux";
 
 import { CreateReducer, Handler } from "../../app/redux/reducers/helpers";
-import { Person } from "../../app/interfaces.ts/person";
-import { PagesType } from "../../app/interfaces.ts/pages-type";
+import { Person } from "../../app/interfaces/person";
+import { PagesType } from "../../app/interfaces/pages-type";
 import {
   ActionPeoleFailure,
   ActionPeople,

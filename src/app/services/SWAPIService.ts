@@ -1,6 +1,6 @@
-import { PagesType } from "./../interfaces.ts/pages-type";
-import { Person } from "../interfaces.ts/person";
-import { Planet } from "../interfaces.ts/planet";
+import { PagesType } from "../interfaces/pages-type";
+import { Person } from "../interfaces/person";
+import { Planet } from "../interfaces/planet";
 
 const request = async <Result>(
   type: string,
