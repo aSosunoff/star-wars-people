@@ -2,7 +2,7 @@ import { Breadcrumb } from "antd";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Path } from "../../app/router/path-constant";
-import { selectorPathName } from "./selector-path-name";
+import { selectorPathName } from "../../app/router/selectors-router";
 
 export const BreadcrumbSWAPI: React.FC = () => {
   const pathname = useSelector(selectorPathName);
