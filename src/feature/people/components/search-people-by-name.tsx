@@ -17,7 +17,7 @@ export const SearchPeopleByName: React.FC = () => {
     });
   }, [error]);
 
-  const { dispatchPepleRequest } = useDispatchPeopleRequest();
+  const { dispatchPeopleRequest } = useDispatchPeopleRequest();
 
   const { handlers, initialFormHandler } = useForm();
 
@@ -37,7 +37,7 @@ export const SearchPeopleByName: React.FC = () => {
         handlers.name?.onChange(ev.target.value);
       }}
       onSearch={(value) => {
-        dispatchPepleRequest(page, value);
+        dispatchPeopleRequest(page, value);
       }}
       enterButton
     />
