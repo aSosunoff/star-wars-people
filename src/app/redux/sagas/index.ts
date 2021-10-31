@@ -1,9 +1,10 @@
 import { spawn, call, all } from "redux-saga/effects";
+import { peopleDetailSaga } from "../../../feature/people-detail/sagas";
 import { peopleSaga } from "../../../feature/people/sagas";
 import { planetsSaga } from "../../../feature/planets/sagas";
 
 export function* rootSaga() {
-  const sagas = [peopleSaga, planetsSaga];
+  const sagas = [peopleSaga, planetsSaga, peopleDetailSaga];
 
   const retrySagas = sagas.map((saga) =>
     spawn(function* () {
