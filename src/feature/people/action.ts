@@ -28,8 +28,8 @@ export type ActionPeopleSuccess = CreateAction<
 >;
 
 export const PEOPLE_FAILURE = "PEOPLE_FAILURE";
-export type dispatchPeopleFalure = typeof PEOPLE_FAILURE;
-export type ActionPeaoleFailure = CreateAction<
+export type dispatchPeopleFailure = typeof PEOPLE_FAILURE;
+export type ActionPeoleFailure = CreateAction<
   ActionPeople,
-  dispatchPeopleFalure
+  dispatchPeopleFailure
 >;
