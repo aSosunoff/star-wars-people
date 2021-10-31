@@ -10,11 +10,21 @@ const request = async <Result>(
   let searchQuery = "";
 
   if (search !== "") {
-    searchQuery += `&search=${search}`;
+    searchQuery += `search=${search}`;
   }
 
+  let pageQuery = "";
+
+  if (page !== 1) {
+    pageQuery = `page=${page}`;
+  }
+
+  const searchParams = [searchQuery, pageQuery].filter(Boolean);
+
   const request = await fetch(
-    `https://swapi.dev/api/${type}/?page=${page}${searchQuery}`,
+    `https://swapi.dev/api/${type}/${
+      searchParams.length ? "?" : ""
+    }${searchParams.join("&")}`,
     init
   );
 
