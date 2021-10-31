@@ -32,3 +32,6 @@ export const routesConfig: RouteProps[] = [
     component: NotFound,
   },
 ];
+
+export const getRouteConfig = (path: Path) =>
+  routesConfig.find((config) => path === config.path);
