@@ -5,7 +5,7 @@ import { ActionPeopleRequest, PEOPLE_REQUEST } from "../action";
 export const useDispatchPeopleRequest = () => {
   const dispatch = useDispatch<Dispatch<ActionPeopleRequest>>();
 
-  const dispatchPepleRequest = useCallback(
+  const dispatchPeopleRequest = useCallback(
     (page: number, search: string) => {
       dispatch({
         type: PEOPLE_REQUEST,
@@ -18,5 +18,5 @@ export const useDispatchPeopleRequest = () => {
     [dispatch]
   );
 
-  return { dispatchPepleRequest };
+  return { dispatchPeopleRequest };
 };
