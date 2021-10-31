@@ -1,5 +1,6 @@
 import { PagesType } from "./../interfaces.ts/pages-type";
 import { Person } from "../interfaces.ts/person";
+import { Planet } from "../interfaces.ts/planet";
 
 const request = async <Result>(
   type: string,
@@ -45,6 +46,21 @@ export class SWAPIService {
     init?: RequestInit
   ) => {
     const data = await request<PagesType<Person>>("people", page, search, init);
+
+    return data;
+  };
+
+  static getPlanets = async (
+    page: number,
+    search: string = "",
+    init?: RequestInit
+  ) => {
+    const data = await request<PagesType<Planet>>(
+      "planets",
+      page,
+      search,
+      init
+    );
 
     return data;
   };
