@@ -4,7 +4,7 @@ import { CreateReducer, Handler } from "../../app/redux/reducers/helpers";
 import { Person } from "../../app/interfaces.ts/person";
 import { PagesType } from "../../app/interfaces.ts/pages-type";
 import {
-  ActionPeaoleFailure,
+  ActionPeoleFailure,
   ActionPeople,
   ActionPeopleRequest,
   ActionPeopleSuccess,
@@ -55,5 +55,5 @@ const handlers: Handler<StatePeople, ActionPeople> = {
 
 export const peopleReducer: Reducer<
   StatePeople,
-  ActionPeopleRequest | ActionPeopleSuccess | ActionPeaoleFailure
+  ActionPeopleRequest | ActionPeopleSuccess | ActionPeoleFailure
 > = (state = initialState, action) => CreateReducer(handlers, state, action);
