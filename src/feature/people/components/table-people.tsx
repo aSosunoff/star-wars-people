@@ -6,7 +6,8 @@ import { v4 } from "uuid";
 import moment from "moment";
 
 export const TablePeople: React.FC = () => {
-  const { pageData, page, loading, search } = useSelector(selectorPeople);
+  const { pageData, page, pageSize, loading, search } =
+    useSelector(selectorPeople);
 
   const { dispatchPepleRequest } = useDispatchPeopleRequest();
 
@@ -30,7 +31,7 @@ export const TablePeople: React.FC = () => {
       pagination={{
         position: ["bottomLeft"],
         current: page,
-        pageSize: 10,
+        pageSize,
         total: pageData?.count ?? 0,
         showSizeChanger: false,
       }}
