@@ -1,10 +1,11 @@
 import React from "react";
-import { Breadcrumb, Layout, Menu } from "antd";
+import { Layout, Menu } from "antd";
 
 import styles from "./app.module.less";
 import { Router } from "./router";
 import { Link } from "react-router-dom";
 import { Path } from "./router/path-constant";
+import { BreadcrumbSWAPI } from "../feature/breadcrum-SWAPI";
 
 export const App: React.FC = () => {
   return (
@@ -21,10 +22,7 @@ export const App: React.FC = () => {
       </Layout.Header>
 
       <Layout.Content className={styles["main-layout"]}>
-        <Breadcrumb style={{ margin: "16px 0" }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>People</Breadcrumb.Item>
-        </Breadcrumb>
+        <BreadcrumbSWAPI />
 
         <Layout.Content>
           <Router />
