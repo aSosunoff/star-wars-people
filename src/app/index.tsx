@@ -14,6 +14,9 @@ export const App: React.FC = () => {
           <Menu.Item key="1">
             <Link to={Path.People}>People</Link>
           </Menu.Item>
+          <Menu.Item key="2">
+            <Link to={Path.Planets}>Planets</Link>
+          </Menu.Item>
         </Menu>
       </Layout.Header>
 
