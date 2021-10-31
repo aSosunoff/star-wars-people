@@ -9,7 +9,7 @@ export const TablePeople: React.FC = () => {
   const { pageData, page, pageSize, loading, search } =
     useSelector(selectorPeople);
 
-  const { dispatchPepleRequest } = useDispatchPeopleRequest();
+  const { dispatchPeopleRequest } = useDispatchPeopleRequest();
 
   return (
     <Table
@@ -36,7 +36,7 @@ export const TablePeople: React.FC = () => {
         showSizeChanger: false,
       }}
       onChange={(page) => {
-        dispatchPepleRequest(page?.current ?? 1, search);
+        dispatchPeopleRequest(page?.current ?? 1, search);
       }}
     />
   );
