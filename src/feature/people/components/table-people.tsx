@@ -9,7 +9,7 @@ import { selectorPeople } from "../selectors/selector-people";
 import { Person } from "../../../app/interfaces/person";
 import { Link } from "react-router-dom";
 import { Path } from "../../../app/router/path-constant";
-import { changeParameter } from "../../../app/router/change-parameter";
+import { setParameter } from "../../../app/router/set-parameter";
 
 const getIdUserFromUrl = (url: Person["url"]) => {
   const id = url.replace(/\D/g, "");
@@ -55,7 +55,7 @@ export const TablePeople: React.FC = () => {
           dataIndex: "url",
           render: (url: Person["url"]) => (
             <Link
-              to={changeParameter(Path.PeopleDetail, {
+              to={setParameter(Path.PeopleDetail, {
                 ":id": getIdUserFromUrl(url),
               })}
             >
