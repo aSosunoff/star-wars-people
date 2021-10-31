@@ -16,14 +16,18 @@ import {
 type StatePeople = {
   pageData: PagesType<Person> | null;
   page: number;
+  pageSize: number;
   search: string;
   loading: boolean;
-  error: any;
+  error: {
+    detail: string;
+  } | null;
 };
 
 const initialState: StatePeople = {
   pageData: null,
   page: 1,
+  pageSize: 10,
   search: "",
   loading: false,
   error: null,
