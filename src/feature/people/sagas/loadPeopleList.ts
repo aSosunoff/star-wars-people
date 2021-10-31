@@ -3,7 +3,7 @@ import { PagesType } from "../../../app/interfaces.ts/pages-type";
 import { Person } from "../../../app/interfaces.ts/person";
 import { SWAPIService } from "../../../app/services/SWAPIService";
 import {
-  ActionPeaoleFailure,
+  ActionPeoleFailure,
   ActionPeopleRequest,
   ActionPeopleSuccess,
   PEOPLE_FAILURE,
@@ -25,7 +25,7 @@ export function* loadPeopleList({
       payload: pageData,
     });
   } catch (error: any) {
-    yield put<ActionPeaoleFailure>({
+    yield put<ActionPeoleFailure>({
       type: PEOPLE_FAILURE,
       payload: error,
     });
