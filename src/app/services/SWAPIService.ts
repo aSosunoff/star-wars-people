@@ -2,12 +2,7 @@ import { PagesType } from "../interfaces/pages-type";
 import { Person } from "../interfaces/person";
 import { Planet } from "../interfaces/planet";
 
-const request = async <Result>(
-  type: string,
-  page: number,
-  search: string = "",
-  init?: RequestInit
-) => {
+const getParams = (page: number, search: string = "") => {
   let searchQuery = "";
 
   if (search !== "") {
@@ -22,12 +17,11 @@ const request = async <Result>(
 
   const searchParams = [searchQuery, pageQuery].filter(Boolean);
 
-  const request = await fetch(
-    `https://swapi.dev/api/${type}/${
-      searchParams.length ? "?" : ""
-    }${searchParams.join("&")}`,
-    init
-  );
+  return `${searchParams.length ? "?" : ""}${searchParams.join("&")}`;
+};
+
+const request = async <Result>(url: string, init?: RequestInit) => {
+  const request = await fetch(url, init);
 
   if (!request.ok) {
     const body = await request.json();
@@ -39,13 +33,24 @@ const request = async <Result>(
   return data as Result;
 };
 
+const BASE_URL = "https://swapi.dev/api";
+
 export class SWAPIService {
   static getPeople = async (
     page: number,
     search: string = "",
     init?: RequestInit
   ) => {
-    const data = await request<PagesType<Person>>("people", page, search, init);
+    const data = await request<PagesType<Person>>(
+      `${BASE_URL}/people/${getParams(page, search)}`,
+      init
+    );
+
+    return data;
+  };
+
+  static getPeopleDetail = async (id: string, init?: RequestInit) => {
+    const data = await request<Person>(`${BASE_URL}/people/${id}`, init);
 
     return data;
   };
@@ -56,9 +61,7 @@ export class SWAPIService {
     init?: RequestInit
   ) => {
     const data = await request<PagesType<Planet>>(
-      "planets",
-      page,
-      search,
+      `${BASE_URL}/planets/${getParams(page, search)}`,
       init
     );
 
