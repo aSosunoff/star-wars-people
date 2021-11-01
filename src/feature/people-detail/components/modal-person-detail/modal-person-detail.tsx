@@ -26,7 +26,13 @@ export const ModalPersonDetail: React.FC<ModalPersonDetailProps> = ({
   }, [dispatchPeopleDetailRequest, id, visible]);
 
   return (
-    <Modal width="800px" visible={visible} onCancel={onCancel} footer={null}>
+    <Modal
+      title="Person detail"
+      width="800px"
+      visible={visible}
+      onCancel={onCancel}
+      footer={null}
+    >
       <PeopleDetail person={person} loading={loading} />
     </Modal>
   );
