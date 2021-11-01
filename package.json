@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@asosunoff/react_use_fetch": "^0.8.1",
     "@asosunoff/react_use_form": "^2.6.1",
     "@craco/craco": "^6.4.0",
     "@types/jest": "^26.0.24",
