@@ -10,12 +10,8 @@ import { Person } from "../../../app/interfaces/person";
 import { Link } from "react-router-dom";
 import { Path } from "../../../app/router/path-constant";
 import { setParameter } from "../../../app/router/set-parameter";
-
-const getIdUserFromUrl = (url: Person["url"]) => {
-  const id = url.replace(/\D/g, "");
-
-  return id;
-};
+import { getIdUserFromUrl } from "../../../app/utils/getIdUserFromUrl";
+import { useModalPersonDetail } from "../../people-detail/components/modal-person-detail/use-modal-person-detail";
 
 export const TablePeople: React.FC = () => {
   const { pageData, page, pageSize, loading, search } =
@@ -23,65 +19,64 @@ export const TablePeople: React.FC = () => {
 
   const { dispatchPeopleRequest } = useDispatchPeopleRequest();
 
+  const [ModalPersonDetail, { showHandler }] = useModalPersonDetail();
+
   return (
-    <Table
-      loading={loading}
-      rowKey={() => v4()}
-      columns={[
-        { dataIndex: "name", title: "Name" },
-        { dataIndex: "birth_year", title: "Birth Year" },
-        {
-          dataIndex: "edited",
-          title: "Edited",
-          render: (edited) => moment(edited).format("DD.MM.YYYY HH:MM:SS"),
-        },
-        { dataIndex: "eye_color", title: "Eye Color" },
-        { dataIndex: "gender", title: "Gender" },
-        { dataIndex: "hair_color", title: "Hair Color" },
-        {
-          dataIndex: "url",
-          render: (url: Person["url"]) => (
-            <Button
-              shape="circle"
-              icon={<EyeOutlined />}
-              onClick={() => {
-                console.log(getIdUserFromUrl(url));
-              }}
-              type="ghost"
-            />
-          ),
-        },
-        {
-          dataIndex: "url",
-          render: (url: Person["url"]) => (
-            <Link
-              to={setParameter(Path.PeopleDetail, {
-                ":id": getIdUserFromUrl(url),
-              })}
-            >
+    <>
+      {ModalPersonDetail}
+
+      <Table
+        loading={loading}
+        rowKey={() => v4()}
+        columns={[
+          { dataIndex: "name", title: "Name" },
+          { dataIndex: "birth_year", title: "Birth Year" },
+          {
+            dataIndex: "edited",
+            title: "Edited",
+            render: (edited) => moment(edited).format("DD.MM.YYYY HH:MM:SS"),
+          },
+          { dataIndex: "eye_color", title: "Eye Color" },
+          { dataIndex: "gender", title: "Gender" },
+          { dataIndex: "hair_color", title: "Hair Color" },
+          {
+            dataIndex: "url",
+            render: (url: Person["url"]) => (
               <Button
                 shape="circle"
-                icon={<UserOutlined />}
+                icon={<EyeOutlined />}
                 onClick={() => {
-                  console.log();
+                  showHandler(getIdUserFromUrl(url));
                 }}
-                type="primary"
+                type="ghost"
               />
-            </Link>
-          ),
-        },
-      ]}
-      dataSource={pageData?.results ?? []}
-      pagination={{
-        position: ["bottomLeft"],
-        current: page,
-        pageSize,
-        total: pageData?.count ?? 0,
-        showSizeChanger: false,
-      }}
-      onChange={(page) => {
-        dispatchPeopleRequest(page?.current ?? 1, search);
-      }}
-    />
+            ),
+          },
+          {
+            dataIndex: "url",
+            render: (url: Person["url"]) => (
+              <Link
+                to={setParameter(Path.PeopleDetail, {
+                  ":id": getIdUserFromUrl(url),
+                })}
+              >
+                <Button shape="circle" icon={<UserOutlined />} type="primary" />
+              </Link>
+            ),
+          },
+        ]}
+        dataSource={pageData?.results ?? []}
+        pagination={{
+          position: ["bottomLeft"],
+          current: page,
+          pageSize,
+          total: pageData?.count ?? 0,
+          showSizeChanger: false,
+        }}
+        onChange={(page) => {
+          dispatchPeopleRequest(page?.current ?? 1, search);
+        }}
+      />
+    </>
   );
 };
