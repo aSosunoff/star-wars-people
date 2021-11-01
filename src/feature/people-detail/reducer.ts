@@ -13,7 +13,12 @@ import {
 } from "./action";
 
 type StatePeopleDetail = {
-  person: Person | null;
+  persons: {
+    [id: string]: {
+      expired: number;
+      person: Person;
+    };
+  };
   id: string | null;
   loading: boolean;
   error: {
@@ -22,7 +27,7 @@ type StatePeopleDetail = {
 };
 
 const initialState: StatePeopleDetail = {
-  person: null,
+  persons: {},
   id: null,
   loading: false,
   error: null,
@@ -43,7 +48,13 @@ const handlers: Handler<StatePeopleDetail, ActionPeopleDetail> = {
   [PEOPLE_DETAIL_SUCCESS]: (state, action) => ({
     ...state,
     loading: false,
-    pageData: action.payload,
+    persons: {
+      ...state.persons,
+      [action.payload.id]: {
+        expired: action.payload.expired,
+        person: action.payload.person,
+      },
+    },
   }),
   DEFAULT: (state) => state,
 };
