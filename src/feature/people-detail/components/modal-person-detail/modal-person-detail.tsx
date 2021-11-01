@@ -15,7 +15,7 @@ export const ModalPersonDetail: React.FC<ModalPersonDetailProps> = ({
   visible,
   onCancel,
 }) => {
-  const { pageData, loading } = useSelector(selectorPeopleDetail);
+  const { person, loading } = useSelector(selectorPeopleDetail);
 
   const { dispatchPeopleDetailRequest } = useDispatchPeopleDetailRequest();
 
@@ -27,7 +27,7 @@ export const ModalPersonDetail: React.FC<ModalPersonDetailProps> = ({
 
   return (
     <Modal width="800px" visible={visible} onCancel={onCancel} footer={null}>
-      <PeopleDetail person={pageData} loading={loading} />
+      <PeopleDetail person={person} loading={loading} />
     </Modal>
   );
 };
