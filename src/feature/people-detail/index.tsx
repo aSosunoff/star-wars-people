@@ -13,5 +13,7 @@ export interface PeopleDetailPageProps extends Pick<CardProps, "loading"> {
 export const PeopleDetailPage: React.FC<PeopleDetailPageProps> = () => {
   const { person, loading } = useSelector(selectorPeopleDetail);
 
-  return <PeopleDetail person={person} loading={loading} />;
+  return (
+    <PeopleDetail title="Person detail" person={person} loading={loading} />
+  );
 };
