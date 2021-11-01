@@ -7,7 +7,13 @@ export type ActionPeopleDetail = {
       id: string;
     };
   };
-  PEOPLE_DETAIL_SUCCESS: { payload: Person };
+  PEOPLE_DETAIL_SUCCESS: {
+    payload: {
+      id: string;
+      person: Person;
+      expired: number;
+    };
+  };
   PEOPLE_DETAIL_FAILURE: { payload: any };
 };
 
