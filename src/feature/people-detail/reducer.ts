@@ -13,7 +13,7 @@ import {
 } from "./action";
 
 type StatePeopleDetail = {
-  pageData: Person | null;
+  person: Person | null;
   id: string | null;
   loading: boolean;
   error: {
@@ -22,7 +22,7 @@ type StatePeopleDetail = {
 };
 
 const initialState: StatePeopleDetail = {
-  pageData: null,
+  person: null,
   id: null,
   loading: false,
   error: null,
