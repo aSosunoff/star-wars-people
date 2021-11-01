@@ -4,16 +4,18 @@ import { Card, CardProps, Col, Row, Typography } from "antd";
 import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
 import { Person } from "../../../app/interfaces/person";
 
-export interface PeopleDetailProps extends Pick<CardProps, "loading"> {
+export interface PeopleDetailProps
+  extends Pick<CardProps, "loading" | "title"> {
   person: Person | null;
 }
 
 export const PeopleDetail: React.FC<PeopleDetailProps> = ({
   person,
   loading,
+  title,
 }) => {
   return (
-    <Card title="Person detail" loading={loading}>
+    <Card title={title} loading={loading}>
       {person &&
         Object.entries(person)
           .filter(([, value]) => typeof value !== "object")
