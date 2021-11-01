@@ -1,7 +1,8 @@
 import { RouteProps } from "react-router-dom";
 import { NotFound } from "../../feature/not-found";
 import { People } from "../../feature/people";
-import { PeopleDetail } from "../../feature/people-detail";
+import { PeopleDetailPage } from "../../feature/people-detail";
+
 import { Planets } from "../../feature/planets";
 import { Path } from "./path-constant";
 
@@ -19,7 +20,7 @@ export const routesConfig: RouteProps[] = [
   {
     path: Path.PeopleDetail,
     exact: true,
-    component: PeopleDetail,
+    component: PeopleDetailPage,
   },
   {
     path: Path.Planets,
