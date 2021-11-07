@@ -59,7 +59,7 @@ const handlers: Handler<StatePlanetDetail, ActionPlanetDetail> = {
   DEFAULT: (state) => state,
 };
 
-export const peopleDetailReducer: Reducer<
+export const planetDetailReducer: Reducer<
   StatePlanetDetail,
   | ActionPlanetDetailRequest
   | ActionPlanetDetailSuccess
