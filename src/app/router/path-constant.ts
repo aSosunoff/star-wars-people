@@ -3,4 +3,5 @@ export enum Path {
   People = "/people",
   Planets = "/planets",
   PeopleDetail = "/people-detail/:id",
+  PlanetDetail = "/planet-detail/:id",
 }
