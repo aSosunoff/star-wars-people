@@ -45,7 +45,7 @@ export const useColumnsPlanet = (
         dataIndex: "url",
         render: (url: Planet["url"]) => (
           <Link
-            to={setParameter(Path.PeopleDetail, {
+            to={setParameter(Path.PlanetDetail, {
               ":id": getIdFromUrl(url),
             })}
           >
