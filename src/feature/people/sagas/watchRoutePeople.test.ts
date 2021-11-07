@@ -3,7 +3,7 @@ import { LOCATION_CHANGE, LocationChangeAction } from "connected-react-router";
 import { watchRoutePeople } from "./watchRoutePeople";
 import { ActionPeopleRequest, PEOPLE_REQUEST } from "../action";
 
-describe("watchRoutePeople df", () => {
+describe("watchRoutePeople", () => {
   const page = 1;
   const search = "";
   let gen: ReturnType<typeof watchRoutePeople>;
@@ -12,7 +12,7 @@ describe("watchRoutePeople df", () => {
     gen = watchRoutePeople();
   });
 
-  it("try", () => {
+  it("check", () => {
     expect(gen.next().value).toEqual(take(LOCATION_CHANGE));
 
     const action: LocationChangeAction = {
