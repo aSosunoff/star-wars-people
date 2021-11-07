@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { Person } from "../../../../app/interfaces/person";
 import { Path } from "../../../../app/router/path-constant";
 import { setParameter } from "../../../../app/router/set-parameter";
-import { getIdUserFromUrl } from "../../../../app/utils/getIdUserFromUrl";
+import { getIdFromUrl } from "../../../../app/utils/getIdFromUrl";
 
 const COLUMNS: ColumnsType<Person> = [
   { dataIndex: "name", title: "Name" },
@@ -35,7 +35,7 @@ export const useColumnsPeople = (
             shape="circle"
             icon={<EyeOutlined />}
             onClick={() => {
-              showPesronDetail(getIdUserFromUrl(url));
+              showPesronDetail(getIdFromUrl(url));
             }}
             type="ghost"
           />
@@ -46,7 +46,7 @@ export const useColumnsPeople = (
         render: (url: Person["url"]) => (
           <Link
             to={setParameter(Path.PeopleDetail, {
-              ":id": getIdUserFromUrl(url),
+              ":id": getIdFromUrl(url),
             })}
           >
             <Button shape="circle" icon={<UserOutlined />} type="primary" />
