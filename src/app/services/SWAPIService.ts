@@ -67,4 +67,10 @@ export class SWAPIService {
 
     return data;
   };
+
+  static getPlanetDetail = async (id: string, init?: RequestInit) => {
+    const data = await request<Planet>(`${BASE_URL}/planets/${id}`, init);
+
+    return data;
+  };
 }
