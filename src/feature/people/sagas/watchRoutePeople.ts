@@ -1,10 +1,10 @@
-import { take, select, put } from "redux-saga/effects";
+import { take, /* select, */ put } from "redux-saga/effects";
 import { LOCATION_CHANGE, LocationChangeAction } from "connected-react-router";
 import { matchPath } from "react-router-dom";
 
-import { selectorPeople } from "./../selectors/selector-people";
+/* import { selectorPeople } from "./../selectors/selector-people";
+import { StateRoot } from "../../../app/redux/reducers"; */
 import { Path } from "../../../app/router/path-constant";
-import { StateRoot } from "../../../app/redux/reducers";
 import { ActionPeopleRequest, PEOPLE_REQUEST } from "../action";
 import { getRouteConfig } from "../../../app/router/routes-config";
 
@@ -20,13 +20,13 @@ export function* watchRoutePeople() {
       (people && matchPath(action.payload.location.pathname, people)) ||
       (main && matchPath(action.payload.location.pathname, main))
     ) {
-      const { page, search }: StateRoot["people"] = yield select(
+      /* const { page, search }: StateRoot["people"] = yield select(
         selectorPeople
-      );
+      ); */
 
       yield put<ActionPeopleRequest>({
         type: PEOPLE_REQUEST,
-        payload: { page, search },
+        payload: { page: 1, search: "" },
       });
     }
   }
