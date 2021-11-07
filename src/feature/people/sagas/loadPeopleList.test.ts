@@ -32,4 +32,17 @@ describe("loadPeopleList", () => {
       })
     );
   });
+
+  it("catch", () => {
+    gen.next();
+
+    const error = new Error("error");
+
+    expect(gen.throw(error).value).toEqual(
+      put({
+        type: PEOPLE_FAILURE,
+        payload: error,
+      })
+    );
+  });
 });
