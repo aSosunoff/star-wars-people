@@ -78,7 +78,7 @@ describe("loadPeopleDetail", () => {
     );
   });
 
-  /* it("catch", () => {
+  it("catch", () => {
     gen.next();
 
     const error = new Error("error");
@@ -89,5 +89,5 @@ describe("loadPeopleDetail", () => {
         payload: error,
       })
     );
-  }); */
+  });
 });
