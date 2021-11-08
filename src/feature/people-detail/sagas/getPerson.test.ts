@@ -26,7 +26,7 @@ describe("getPerson", () => {
     ).toBeNull();
   });
 
-  it("return null if person expired less then current date", () => {
+  it("return null if person expired less than current date", () => {
     gen.next();
 
     expect(
@@ -42,5 +42,25 @@ describe("getPerson", () => {
         loading: false,
       }).value
     ).toBeNull();
+  });
+
+  it("return person if person expired more than current date", () => {
+    gen.next();
+
+    const item = {
+      person,
+      expired: moment().add(2, "m").toDate().getTime(),
+    };
+
+    expect(
+      gen.next({
+        persons: {
+          [idPerson]: item,
+        },
+        id: null,
+        error: null,
+        loading: false,
+      }).value
+    ).toEqual(item);
   });
 });
