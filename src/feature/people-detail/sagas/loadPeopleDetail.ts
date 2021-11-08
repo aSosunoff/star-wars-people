@@ -13,14 +13,9 @@ import {
 } from "../action";
 import { getPerson } from "./getPerson";
 
-export function* loadPeopleDetail({
-  payload: { id },
-}: ActionPeopleDetailRequest) {
+export function* loadPeopleDetail({ payload: { id } }: ActionPeopleDetailRequest) {
   try {
-    const person: StateRoot["peopleDetail"]["persons"][any] | null = yield call(
-      getPerson,
-      id
-    );
+    const person: StateRoot["peopleDetail"]["persons"][any] | null = yield call(getPerson, id);
 
     if (!person) {
       const data: Person = yield call(SWAPIService.getPeopleDetail, id);
