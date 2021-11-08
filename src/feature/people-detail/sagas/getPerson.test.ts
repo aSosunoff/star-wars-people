@@ -1,6 +1,7 @@
-import { selectorPeopleDetail } from "./../selectors/selector-people-detail";
+import moment from "moment";
 import { select } from "redux-saga/effects";
 import { getPerson } from "./getPerson";
+import { selectorPeopleDetail } from "./../selectors/selector-people-detail";
 import { Person } from "../../../app/interfaces/person";
 
 describe("getPerson", () => {
@@ -14,7 +15,6 @@ describe("getPerson", () => {
 
   it("check person is not found", () => {
     expect(gen.next().value).toEqual(select(selectorPeopleDetail));
-    //[idPerson]: { person, expired: 2 }
 
     expect(
       gen.next({
@@ -23,10 +23,24 @@ describe("getPerson", () => {
         error: null,
         loading: false,
       }).value
-    ).toBeFalsy();
+    ).toBeNull();
+  });
 
-    /* expect(gen.next().value).toEqual(
-      takeEvery<ActionPeopleRequest>(PEOPLE_REQUEST, loadPeopleList)
-    ); */
+  it("return null if person expired less then current date", () => {
+    gen.next();
+
+    expect(
+      gen.next({
+        persons: {
+          [idPerson]: {
+            person,
+            expired: moment().add(-1, "m").toDate().getTime(),
+          },
+        },
+        id: null,
+        error: null,
+        loading: false,
+      }).value
+    ).toBeNull();
   });
 });
