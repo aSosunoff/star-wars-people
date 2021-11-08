@@ -1,12 +1,18 @@
-import { PEOPLE_DETAIL_REQUEST, PEOPLE_DETAIL_SUCCESS } from "./../action";
+import {
+  ActionPeopleDetailFailure,
+  PEOPLE_DETAIL_FAILURE,
+  PEOPLE_DETAIL_REQUEST,
+  PEOPLE_DETAIL_SUCCESS,
+} from "./../action";
 import { call, put } from "redux-saga/effects";
+import moment, { Moment } from "moment";
+
 import { loadPeopleDetail } from "./loadPeopleDetail";
 import { SWAPIService } from "../../../app/services/SWAPIService";
-/* import { PEOPLE_SUCCESS, PEOPLE_REQUEST, PEOPLE_FAILURE } from "../action"; */
 import { Person } from "../../../app/interfaces/person";
 import { getPerson } from "./getPerson";
+import { StateRoot } from "../../../app/redux/reducers";
 
-import moment, { Moment } from "moment";
 jest.mock("moment");
 
 describe("loadPeopleDetail", () => {
@@ -53,14 +59,33 @@ describe("loadPeopleDetail", () => {
     );
   });
 
+  it("if person is found", async () => {
+    expect(gen.next().value).toEqual(call(getPerson, idPerson));
+
+    const data: Person = { name: "user1" } as Person;
+
+    const person: StateRoot["peopleDetail"]["persons"][any] = { person: data, expired: Date.now() };
+
+    expect(gen.next(person as any).value).toEqual(
+      put({
+        type: PEOPLE_DETAIL_SUCCESS,
+        payload: {
+          id: idPerson,
+          person: person.person,
+          expired: person.expired,
+        },
+      })
+    );
+  });
+
   /* it("catch", () => {
     gen.next();
 
     const error = new Error("error");
 
     expect(gen.throw(error).value).toEqual(
-      put({
-        type: PEOPLE_FAILURE,
+      put<ActionPeopleDetailFailure>({
+        type: PEOPLE_DETAIL_FAILURE,
         payload: error,
       })
     );
