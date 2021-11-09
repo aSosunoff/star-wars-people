@@ -3,32 +3,38 @@
 const baseUrl = "http://localhost:3001";
 
 describe("star-wars-people", () => {
-  const search = (text: string) =>
-    cy.get(".ant-input-search-with-button .ant-input[type='text']").type(text);
-
   beforeEach(() => {
     cy.visit(baseUrl);
+
+    cy.get(".ant-input-search-with-button").as("searchWrapper");
+
+    cy.get("@searchWrapper").find(".ant-input[type='text']").as("seatchInput");
+
+    cy.get("@searchWrapper").find(".ant-input-search-button").as("seatchButton");
+
+    cy.get(".ant-breadcrumb > span").as("breadcrumbs");
   });
 
   it("should be breadcrumb home/main before start page", () => {
-    cy.get(".ant-breadcrumb > span").as("breadcrumbs").should("have.length", 2);
+    cy.get("@breadcrumbs").should("have.length", 2);
 
     cy.get("@breadcrumbs").first().find(".ant-breadcrumb-link").should("have.text", "Home");
+
     cy.get("@breadcrumbs").last().find(".ant-breadcrumb-link").should("have.text", "Main");
   });
 
-  /* it("should be search with button", () => {
-    cy.get(".ant-input-search-with-button").should("have.length", 1);
+  it("should be search with button", () => {
+    cy.get("@searchWrapper").should("have.length", 1);
   });
 
   it("should be type text to search item", () => {
-    search("luke").should("have.value", "luke");
+    cy.get("@seatchInput").type("luke").should("have.value", "luke");
   });
 
   it("should be search by text from input", () => {
-    search("luke");
+    cy.get("@seatchInput").type("luke");
 
-    cy.get(".ant-input-search-with-button button").click();
+    cy.get("@seatchButton").click();
 
     cy.get("table tbody tr")
       .should("have.length", 1)
@@ -62,5 +68,5 @@ describe("star-wars-people", () => {
       "style",
       "display: none;"
     );
-  }); */
+  });
 });
