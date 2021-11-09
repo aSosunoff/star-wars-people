@@ -15,7 +15,53 @@ describe("star-wars-people", () => {
     cy.get(".ant-breadcrumb > span").as("breadcrumbs");
   });
 
-  it("should be breadcrumb home/main before start page", () => {
+  it("should fetch to people api", () => {
+    cy.intercept("GET", "https://swapi.dev/api/people/").as("getPeople");
+    cy.visit(baseUrl);
+    cy.wait("@getPeople").its("response.statusCode").should("eq", 200);
+  });
+
+  it("should fetch to people api and return 10 items", () => {
+    cy.intercept("GET", "https://swapi.dev/api/people/").as("getPeople");
+    cy.visit(baseUrl);
+    cy.wait("@getPeople").its("response.body.results").should("have.length", 10);
+  });
+
+  it("should fetch to people", () => {
+    cy.intercept("GET", "https://swapi.dev/api/people/", {
+      results: [
+        {
+          name: "Luke Skywalker",
+          height: "172",
+          mass: "77",
+          hair_color: "blond",
+          skin_color: "fair",
+          eye_color: "blue",
+          birth_year: "19BBY",
+          gender: "male",
+          homeworld: "https://swapi.dev/api/planets/1/",
+          films: [
+            "https://swapi.dev/api/films/1/",
+            "https://swapi.dev/api/films/2/",
+            "https://swapi.dev/api/films/3/",
+            "https://swapi.dev/api/films/6/",
+          ],
+          species: [],
+          vehicles: ["https://swapi.dev/api/vehicles/14/", "https://swapi.dev/api/vehicles/30/"],
+          starships: ["https://swapi.dev/api/starships/12/", "https://swapi.dev/api/starships/22/"],
+          created: "2014-12-09T13:50:51.644000Z",
+          edited: "2014-12-20T21:17:56.891000Z",
+          url: "https://swapi.dev/api/people/1/",
+        },
+      ],
+    }).as("getPeople");
+
+    cy.visit(baseUrl);
+
+    cy.wait("@getPeople").its("response.body.results").should("have.length", 1);
+  });
+
+  /* it("should be breadcrumb home/main before start page", () => {
     cy.get("@breadcrumbs").should("have.length", 2);
 
     cy.get("@breadcrumbs").first().find(".ant-breadcrumb-link").should("have.text", "Home");
@@ -68,5 +114,5 @@ describe("star-wars-people", () => {
       "style",
       "display: none;"
     );
-  });
+  }); */
 });
