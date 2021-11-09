@@ -22,9 +22,7 @@ const COLUMNS: ColumnsType<Person> = [
   { dataIndex: "hair_color", title: "Hair Color" },
 ];
 
-export const useColumnsPeople = (
-  showPesronDetail: (idPrson: string) => void
-) => {
+export const useColumnsPeople = (showPesronDetail: (idPrson: string) => void) => {
   const columns = useMemo<ColumnsType<Person>>(
     () => [
       ...COLUMNS,
@@ -33,6 +31,7 @@ export const useColumnsPeople = (
         render: (url: Person["url"]) => (
           <Button
             shape="circle"
+            data-cypress="open-modal-person-detail"
             icon={<EyeOutlined />}
             onClick={() => {
               showPesronDetail(getIdFromUrl(url));
