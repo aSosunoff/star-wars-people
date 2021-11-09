@@ -48,7 +48,12 @@ export const useColumnsPeople = (showPesronDetail: (idPrson: string) => void) =>
               ":id": getIdFromUrl(url),
             })}
           >
-            <Button shape="circle" icon={<UserOutlined />} type="primary" />
+            <Button
+              shape="circle"
+              data-cypress="open-page-person-detail"
+              icon={<UserOutlined />}
+              type="primary"
+            />
           </Link>
         ),
       },
