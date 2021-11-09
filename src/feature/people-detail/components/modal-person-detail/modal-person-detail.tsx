@@ -5,16 +5,11 @@ import { useDispatchPeopleDetailRequest } from "../../dispatch/use-dispatch-peop
 import { selectorPeopleDetail } from "../../selectors/selector-people-detail";
 import { PeopleDetail } from "../people-detail";
 
-interface ModalPersonDetailProps
-  extends Pick<ModalProps, "visible" | "onCancel"> {
+interface ModalPersonDetailProps extends Pick<ModalProps, "visible" | "onCancel"> {
   id: string;
 }
 
-export const ModalPersonDetail: React.FC<ModalPersonDetailProps> = ({
-  id,
-  visible,
-  onCancel,
-}) => {
+export const ModalPersonDetail: React.FC<ModalPersonDetailProps> = ({ id, visible, onCancel }) => {
   const { person, loading } = useSelector(selectorPeopleDetail);
 
   const { dispatchPeopleDetailRequest } = useDispatchPeopleDetailRequest();
@@ -27,6 +22,7 @@ export const ModalPersonDetail: React.FC<ModalPersonDetailProps> = ({
 
   return (
     <Modal
+      data-cypress="modal-detail-person"
       title="Person detail"
       width="800px"
       visible={visible}
