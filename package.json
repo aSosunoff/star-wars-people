@@ -1,5 +1,5 @@
 {
-  "name": "star-wars-peaple",
+  "name": "star-wars-people",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -32,12 +32,15 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "craco eject"
+    "eject": "craco eject",
+    "cypress": "cypress open",
+    "test:c": "cross-env PORT=3001 concurrently \"npm start\" \"npm run cypress\""
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:cypress/recommended"
     ]
   },
   "browserslist": {
@@ -56,6 +59,10 @@
     "@types/enzyme": "^3.10.10",
     "@types/react-router-dom": "^5.3.2",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.5",
-    "enzyme": "^3.11.0"
+    "concurrently": "^6.3.0",
+    "cross-env": "^7.0.3",
+    "cypress": "^8.7.0",
+    "enzyme": "^3.11.0",
+    "eslint-plugin-cypress": "^2.12.1"
   }
 }
